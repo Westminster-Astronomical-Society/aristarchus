@@ -1,0 +1,68 @@
+====================================================================================================
+      __     __  ___       __   __             __      __              __          __       
+ /\  |__) | /__`  |   /\  |__) /  ` |__| |  | /__`    /  `  /\   |\/| |__)  /\  | / _` |\ | 
+/~~\ |  \ | .__/  |  /~~\ |  \ \__, |  | \__/ .__/    \__, /~~\  |  | |    /~~\ | \__> | \| 
+====================================================================================================
+Sociedad Antioquena de Astronomia - Universidad de Antioquia
+http://astronomia.udea.edu.co/aristarchus-campaign
+====================================================================================================
+
+Measuring the Lunar Distance with Pictures
+Scripts Set
+==================================================
+
+- get-moon-radius.py: this script calculates the apparent radius of a
+  full moon in a given image.
+
+  Usage: 
+  	 $ python get-moon-radius.py <IMAGE_FILE>
+	 
+  Returns:
+
+  * Optimal threshold.
+
+  * Apparent radius of the moon.
+
+  * Minimum uncertainty in the apparent radius.
+
+  * An image showing the moon and superimposed the contours at optimal
+    and suboptimal thresholds.
+
+- fit-moon-size.py: this script perform the statistical analysis of a
+  set of apparent sizes measured over images of the full moon.
+
+  Inputs: a plain data file with three columns: time of picture
+  (HH:MM:SS), measured moon radius and radius uncertainty.  An example
+  input file is provided along the scripts.
+
+  Configuration: before running the script you should configure several parameters:
+  
+	OBSERVER_LATITUDE: latitude of the observing site.
+	
+	MONTECARLO_POINTS: number of points used in the Monte Carlo
+	sampling of the parameter space.  Recommended 100,000.
+
+	H_INI, D_HINI: elevation of the moon (and its uncertainty) at
+	the time of the first picture.
+
+	A_INI, D_AINI: azimuth of the moon (and its uncertainty) at
+	the time of the first picture.
+
+  Usage: 
+  	 $ python fit-moon-size.py
+
+
+  Returns:
+
+  * 95% confidence level for the model parameters.
+
+  * Plot of apparent sizes vs. time, including measurements and curves
+    corresponding to the Monte Carlo consistent sets of model
+    parameters.
+
+  * Plot of instantaneous lunar distance vs. time, including
+    measurements and curves corresponding to the Monte Carlo
+    consistent sets of model parameters.
+
+All the scripts require Python >=2.7 and the libraries Matplotlib,
+SciPy and NumPy.
